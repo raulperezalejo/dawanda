@@ -45,5 +45,13 @@ describe Dawanda do
     expect(fifty_eur.inspect).to eq "50.0 EUR"
   end
 
+  it 'convert to currency that does not exist' do
+    fifty_eur = Dawanda::Money.new(50, 'EUR')
+    fifty_eur.convert_to('PPP')
+    expect(fifty_eur.inspect).to eq "50.0 EUR"
+  end
+
+
+
 
 end

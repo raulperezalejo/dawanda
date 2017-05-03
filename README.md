@@ -1,8 +1,6 @@
 # Dawanda
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dawanda`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to this new gem! In this directory, you'll find very basic functions to make currency change calculations.
 
 ## Installation
 
@@ -22,7 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You have to first define the base currency and the rates for that currency
+```ruby
+$ Dawanda::Money.convertion_rates('EUR', {
+    'USD'     => 1.1,
+    'Bitcoin' => 1.2,
+    'CUC'     => 1.3,
+    'CUP'     => 1.4
+
+})
+```
+then you will be able to create objects over this based currency and make basic calcs over the rates for each currency.
 
 ## Development
 

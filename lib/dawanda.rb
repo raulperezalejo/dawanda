@@ -61,7 +61,7 @@ module Dawanda
     end
 
     def convert_to(currency)
-      if @base_currency != currency
+      if @base_currency != currency && @@rates[currency]
         @amount *= @@rates[currency]
         @base_currency = currency
       end
