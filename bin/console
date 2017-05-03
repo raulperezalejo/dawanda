@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "dawanda"
+require 'pry'
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+
+Dawanda::Money.convertion_rates('EUR', {
+    'USD'     => 1.1,
+    'Bitcoin' => 1.2,
+    'CUC'     => 1.3,
+    'CUP'     => 1.4
+
+})
+fifty_eur = Dawanda::Money.new(50, 'EUR')
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
+
+# require "irb"
+# IRB.start
