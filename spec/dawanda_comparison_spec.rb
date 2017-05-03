@@ -14,38 +14,30 @@ describe Dawanda do
 
   before(:each) do
     @fifty_eur = Dawanda::Money.new(50, 'EUR')
-    @twenty_dollars = Dawanda::Money.new(20, 'USD')
+    @twenty_eur = Dawanda::Money.new(20, 'EUR')
   end
 
   it 'equality true' do
-    twenty_dollars = Dawanda::Money.new(20, 'USD')
-    expect(@twenty_dollars == twenty_dollars).to be true
+    another_twenty_eur = Dawanda::Money.new(20, 'EUR')
+    expect(@twenty_eur == another_twenty_eur).to be true
   end
 
   it 'amount equality false' do
-    twenty_dollars = Dawanda::Money.new(30, 'USD')
-    expect(@twenty_dollars == twenty_dollars).to be false
-  end
-
-  it 'currency equality false' do
-    twenty_convertible = Dawanda::Money.new(20, 'CUC')
-    expect(@twenty_dollars == twenty_convertible).to be false
-  end
-
-  it 'equality in conversion' do
-    fifty_eur_in_usd = @fifty_eur.convert_to('USD')
-    equity = @fifty_eur == fifty_eur_in_usd
-    expect(equity).to be true
+    thirty_eur = Dawanda::Money.new(30, 'EUR')
+    expect(@twenty_dollars == thirty_eur).to be false
   end
 
   it 'greater than' do
-    eval = @twenty_dollars > Dawanda::Money.new(5, 'USD')
+    five_eur = Dawanda::Money.new(5, 'EUR')
+    eval = @twenty_eur > five_eur
     expect(eval).to be true
   end
 
   it 'smaller than' do
-    eval = @fifty_eur < @twenty_dollars
-    expect(eval).to be false
+    sixty_eur = Dawanda::Money.new(60, 'EUR')
+    sixty_eur.convert_to('USD')
+    eval = @fifty_eur < sixty_eur
+    expect(eval).to be true
   end
 
 end

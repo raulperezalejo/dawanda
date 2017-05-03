@@ -12,6 +12,10 @@ describe Dawanda do
     })
   end
 
+  it 'create with different base currency' do
+    expect { Dawanda::Money.new(50, 'MRK') }.to raise_error('Base currency MRK does not exist, should be EUR')
+  end
+
   it 'check amount' do
     fifty_eur = Dawanda::Money.new(50, 'EUR')
     expect(fifty_eur.amount).to eq 50.00
@@ -33,11 +37,6 @@ describe Dawanda do
     fifty_eur.convert_to('USD')
     expect(fifty_eur.inspect).to eq "55.0 USD"
     expect(fifty_eur).to be_a(Dawanda::Money)
-  end
-
-  it 'convert to USD from wrong base currency' do
-    fifty_eur = Dawanda::Money.new(50, 'GMR')
-    expect { fifty_eur.convert_to('USD') }.to raise_error('Base currency GMR does not exist, should be EUR')
   end
 
   it 'convert to same currency' do

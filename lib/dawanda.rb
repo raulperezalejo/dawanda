@@ -9,6 +9,9 @@ module Dawanda
     attr_accessor :amount, :base_currency
 
     def initialize(amount, base_currency)
+      # Objects can only be created using the base currency of the class
+      raise StandardError.new("Base currency #{base_currency} does not exist, should be #{@@base_currency_for_rates}") if base_currency != @@base_currency_for_rates
+
       @amount, @base_currency = amount, base_currency
     end
 
@@ -58,13 +61,9 @@ module Dawanda
     end
 
     def convert_to(currency)
-      if @base_currency == @@base_currency_for_rates
-        if @base_currency != currency
-          @amount *= @@rates[currency]
-          @base_currency = currency
-        end
-      else
-        raise StandardError.new("Base currency #{@base_currency} does not exist, should be #{@@base_currency_for_rates}")
+      if @base_currency != currency
+        @amount *= @@rates[currency]
+        @base_currency = currency
       end
       self
     end

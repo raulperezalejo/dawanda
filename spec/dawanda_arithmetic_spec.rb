@@ -17,32 +17,18 @@ describe Dawanda do
   end
 
   it 'add two different currencies' do
-    twenty_dollars = Dawanda::Money.new(20, 'USD')
-    added = @fifty_eur + twenty_dollars
-    expect(added.inspect).to eq '72.0 EUR'
-    expect(added).to be_a(Dawanda::Money)
-  end
-
-  it 'add three different currencies' do
-    twenty_dollars = Dawanda::Money.new(20, 'USD')
-    ten_convertible = Dawanda::Money.new(10, 'CUC')
-    added = @fifty_eur + twenty_dollars + ten_convertible
-    expect(added.inspect).to eq '85.0 EUR'
+    twenty_eur = Dawanda::Money.new(20, 'EUR')
+    twenty_eur.convert_to('USD')
+    added = @fifty_eur + twenty_eur
+    expect(added.inspect).to eq '74.2 EUR'
     expect(added).to be_a(Dawanda::Money)
   end
 
   it 'substract two different currencies' do
-    twenty_dollars = Dawanda::Money.new(20, 'USD')
-    substracted = @fifty_eur - twenty_dollars
-    expect(substracted.inspect).to eq '28.0 EUR'
-    expect(substracted).to be_a(Dawanda::Money)
-  end
-
-  it 'substract three different currencies' do
-    twenty_dollars = Dawanda::Money.new(20, 'USD')
-    ten_convertible = Dawanda::Money.new(10, 'CUC')
-    substracted = @fifty_eur - twenty_dollars - ten_convertible
-    expect(substracted.inspect).to eq '15.0 EUR'
+    twenty_eur = Dawanda::Money.new(20, 'EUR')
+    twenty_eur.convert_to('USD')
+    substracted = @fifty_eur - twenty_eur
+    expect(substracted.inspect).to eq '25.799 EUR'
     expect(substracted).to be_a(Dawanda::Money)
   end
 
